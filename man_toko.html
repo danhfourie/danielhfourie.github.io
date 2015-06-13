@@ -1,0 +1,91 @@
+<html>
+<head> 
+
+
+<title>Tokonoma</title>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script> 
+<script type="text/javascript" src="photowall/jquery-photowall.js"></script>
+<link rel="stylesheet" type="text/css" href="photowall/jquery-photowall.css">
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        PhotoWall.init({
+            el:                 '#gallery'               // Gallery element
+            ,zoom:              false                     // Use zoom
+            ,zoomAction:        'mouseenter'             // Zoom on action
+            ,zoomTimeout:       500                      // Timeout before zoom
+            ,zoomDuration:      100                      // Zoom duration time
+            ,zoomImageBorder:   5                        // Zoomed image border size
+            ,showBox:           true                     // Enavle fullscreen mode
+            ,showBoxSocial:     true                     // Show social buttons
+            ,padding:           3                        // padding between images in gallery
+            ,lineMaxHeight:     200                      // Max set height of pictures line
+            ,lineMaxHeightDynamic: false                 // Dynamic lineMaxHeight. If set to True,
+                                                         // then line height will be changing on
+                                                         // resize, coressponding to
+                                                         // baseScreenHeight param
+            ,baseScreenHeight:  600                      // Base screen size from wich calculating dynamic lineMaxHeight
+        });
+        // Max image width form Picasa
+        // 94, 110, 128, 200, 220, 288, 320, 400, 512, 576, 640, 720, 800, 912,
+        // 1024, 1152, 1280, 1440, 1600
+		// Get url from picasaweb.google.com - user/xxxxxx is already in url. albumid/ is found if you click on RSS....
+
+        $.ajax({
+            url: 'https://picasaweb.google.com/data/feed/api/user/102736653917585029126/albumid/5773440639878581617'
+                 +'/?alt=json&fields=entry(gphoto:id,title,media:group(media:description,media:thumbnail,media:'
+                 +'content))&imgmax=1600',
+            dataType: 'jsonp',
+            success: function(data){
+                var photos = {}
+                if(!data.feed.entry) return;
+                for(var i in data.feed.entry) {
+                    var e     = data.feed.entry[i].media$group;
+                    var id    = data.feed.entry[i].gphoto$id.$t;
+
+                    var t1h   = e.media$thumbnail[2].height;
+                    var t1w   = e.media$thumbnail[2].width;
+                    var t1src = e.media$thumbnail[2].url;
+					
+		//			var desc  = e.media$description[0].$t;  // added description variable to get picture caption/title
+
+                    var t2w   = Math.round(t1w * 1.5);
+                    var t2h   = Math.round(t1h * 1.5);
+
+                    var t2src = e.media$content[0].url+'/../../w'+t2w+'-h'+t2h+'/';
+
+                    var bsrc  = e.media$content[0].url;
+                    var bw    = e.media$content[0].width;
+                    var bh    = e.media$content[0].height;
+
+                    photos[id] = {id:id,img:bsrc,width:bw,height:bh,
+                                  th:{src:t1src,width:t1w,height:t1h,
+                                      zoom_src:t2src,zoom_factor:1.5
+                                  }
+                    };
+
+                }
+                PhotoWall.load(photos);
+            }
+        });
+    });
+</script>
+
+</head> 
+
+<body> 
+<div class="home"><a href="index.html"><small>Home</small></a></div>
+
+<div id="gallery">
+        <div class="body">
+        </div>
+</div>
+
+
+
+
+</body> 
+
+</html>

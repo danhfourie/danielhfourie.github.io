@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<title>Final Project</title>
+<link rel="stylesheet" href="danmit.css" type="text/css"/>
+</head>
+
+<body>
+<div class="home"><a href="index.html"><small>Home</small></a></div>
+<div class="body">
+<h1>3-axis CNC Desktop Mill</h1>
+
+<img src="audrie.jpg" width="600" title="Audrie">
+<br>
+<p>
+For the final project of <a href="http://fab.cba.mit.edu/classes/MIT/863.10/">MAS.863</a>, I designed and built a 3-axis CNC desktop mill. Audrie is constructed from 1/4" thick aluminum plate cut on the waterjet and joined together with captive T-nuts. The machine met its functional requirements of quick assembly (a few hours), large working volume to footprint ratio (13"x8"x4.5" (X Y Z) / 16"x16"x14" (X Y Z) = 0.13), and stiffness. So far, Audrie has been able to machine steel, ABS, wax, and foam and has the capability to mill PCBs. Additionally, vibrations caused by the motor are small.
+</p>
+<p>
+Each stage rides four bronze bushingss smoothly along the length of two steel bearing shafts. Jamming due to slight misalignments in the shafts is overcome through the use of flexures. Leadscrews attached to compliantly mounted stepper motors drive the stages via brass nuts. Backlash is nearly negligible, but constant force springs can be used to take out any remaining slop. Cranks can be attached to the secondary shafts of the steppers to drive the machine manually, but it is nominally controlled by a CNC system. <a href="http://www.linuxcnc.org/">EMC2</a> software converts G-code into step and direction signals, which are sent through a parallel port to custom fabricated stepper driver boards. 
+</p>
+<p>
+More details, pictures, and video on the <a href="audrievid.html">next page</a>.
+</p>
+<br>
+<br>
+<object width="600" height="450"><param name="movie" value="http://www.youtube.com/v/DpfMZuVuXzM"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/DpfMZuVuXzM" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="450"></embed></object>
+<p>Milling out a circle contour in green foam.</p>
+<br>
+
+
+
+<br>
+
+<p>
+
+<li><a href="http://fab.cba.mit.edu/classes/MIT/863.10/people/daniel.fourie/final.html">Final Project page at my MAS.863 site</a></li>
+<li><a href="wj_pub.dxf">DXF including the waterjet parts</a></li>
+<li><a href="wj_pub1.pdf">PDF of the DXF</a></li>
+<li><a href="$V2.zip">Zip file including Solidworks assembly and parts</a> (11 MB)</li>
+<li><a href="$BOM.pdf">Bill of Materials</a></li>
+</p>
+
+<br>
+<p>Much thanks to and inspiration from:
+<li>Jonathan Ward - <a href="http://mtm.cba.mit.edu/machines/mtm_az/index.html">A-Z</a></li>
+<li><a href="http://mtm.cba.mit.edu/">machines that make</a></li>
+<li>Ilan Moyer - <a href="http://mtm.cba.mit.edu/fabinabox/index.html">Fab-In-A-Box</a></li>
+<li>David Carr - <a href="http://makeyourbot.org/">Mantis</a></li>
+<li>Natan Linder - <a href="http://fluid.media.mit.edu/people/natan/current/mtmlj.html">Little John</a></li>
+</p>
+
+
+</div>
+</body>
+</html>

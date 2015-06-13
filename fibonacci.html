@@ -1,0 +1,99 @@
+<HTML>
+
+<HEAD>
+<TITLE>Pattern in Digital Roots of Fibonacci Numbers</TITLE>
+<link rel="stylesheet" href="danmit.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<div class="home">
+<a href="index.html"><small>Home</small></a>
+</div>
+
+<div class="body">
+
+<h1>Pattern in Digital Roots of Fibonacci Numbers</h1>
+
+<table>
+<tr>
+<td>
+<p>
+A digital sum of an integer is the sum of all its digits. The digital root of an integer 
+is found when the digital sum is repeatedly taken until it is no longer possible (only 
+one remaining digit). For example, the digital root of 693 is 9 (6+9+3=18, 1+8=9). I will 
+notate the digital root function as dr(). e.g. dr(693)=9. Interestingly, the digital root 
+of an integer can be evaluated quite simply by modulus 9. That is, dr(x)=1+[(x-1)mod9]. 
+The integer has to be offset in order to give a value of 9 for the dr of multiples of 9, 
+instead of 0.
+</p>
+<p>
+<i>I found that taking the digital roots of the sequence of Fibonacci numbers yields a pattern 
+that repeats every 24 numbers.</i> It goes like this: <br>1 1 2 3 5 8 4 3 7 1 8 9 8 8 7 6 4 1 5 6 2 8 1 9<br> As you can see, 
+the first 6 integers are simply the beginning of the Fibonacci sequence, the next, 4, is the 
+digital sum of 13 (the next in the sequence), then 3 is the digital root of 21, and so on.
+</p>
+<p>
+When we get up to the 25th integer in the Fibonacci sequence (75025), the pattern begins to 
+repeat. dr(75025)=1, dr(121393)=1, dr(196418)=2, dr(317811)=3, etc.
+</p>
+<p>
+One can only go so far checking this by hand, so I wrote a Python script to run through the 
+Fibonacci numbers, generate their digital roots, and compare the results to the pattern. 
+You can try it out <a href="SequenceComparator.py">here</a>. Currently, this confirms the 
+pattern in Fibonacci numbers with up to 2,000 digits before the program exits on its own 
+for some reason.
+</p>
+
+<p>
+The nature of the pattern itself is straightforward. It generates new numbers in the usual Fibonacci manner, adding the two preceding numbers, but if the resulting number is 10 or greater, the digital root is taken. For example, 3(8th number) + 7(9th number) = 10 , 1+0=1 (10th number). This continues up to the 24th number in the pattern, where a 1 and a 9 yields a following 1 and 1, starting the pattern over again.
+</p>
+
+<p>
+The Fibonacci sequence is generated in the same manner, but without taking the digital sum of the sum. Using one of the identities of digit sum arithmetic (see link below), the sequence and the pattern can be linked together to show that the Fibonacci sequence will always yield this pattern.
+</p>
+
+<p>
+I will use a simple additive identity: dr(a+b) = dr(dr(a)+dr(b))
+<br>
+Let a, b, c represent three consecutive numbers in the Fibonacci sequence, i.e. a+b=c.
+<br>
+Let x, y, z represent three consecutive numbers in the pattern, i.e. z=dr(x+y).
+<br>
+Let the two sets of three consecutive numbers correspond, so that x=dr(a), y=dr(b), z=dr(c).
+</p>
+
+<p>
+Substituting:
+<br>
+z=dr(x+y)
+<br>
+dr(c)=dr(dr(a)+dr(b))
+<br>
+dr(a+b)=dr(dr(a)+dr(b))
+<br>
+QED
+</p>
+
+
+<p>There are many other interesting things which emerge concerning this pattern and digital roots in general. One of the better pages with some cool results is the first one below
+</p>
+
+
+<br>
+<p><u>Links:</u></p>
+<li><a href="http://www.applet-magic.com/Digitsum.htm">Digit Sum Arithmetic</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Digit_sum">Digit Sum</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Binet%27s_formula#Closed_form_expression">Binet's Formula</a></li>
+
+</td>
+<td valign="top">
+<img src="fibonacci_pattern.jpg">
+</td>
+</tr>
+</table>
+
+
+</div>
+</BODY>
+</HTML>
